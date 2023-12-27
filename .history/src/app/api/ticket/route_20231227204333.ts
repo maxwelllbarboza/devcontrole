@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import prismaClient from '@/lib/prisma'
-import { Ticket } from '@prisma/client';
+import { Ticket } from '@prisma/client'
 
 // http://localhost:3000/api/ticket
 export async function PATCH(request: Request){
@@ -46,19 +46,23 @@ export async function PATCH(request: Request){
 
 
 export async function POST(request: Request){
-  const newTicket: Ticket = await request.json();
+  const { customerId, name, description } = await request.json();
 
-  if(!newTicket.customerId || !newTicket.name || !newTicket.description){
+  if(!customerId || !name || !description){
     return NextResponse.json({ error: "Failed create new ticket"}, { status: 400 });
   }
 
   try{
-    newTicket.status = "ABERTO"
 
     await prismaClient.ticket.create({
-      data:newTicket,
-    })
-      
+      data:{
+        name: name,
+        description: description,
+        status: "ABERTO",
+        customerId: customerId,
+      }
+    })as any
+
     return NextResponse.json({ message: "Chamado registrado com sucesso!"})
 
   }catch(err){

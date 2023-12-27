@@ -14,7 +14,7 @@ export async function PATCH(request: Request){
 
   const { id } = await request.json();
 
-  const findTicket = await prismaClient.ticket.findFirst({
+  const findTicket: = await prismaClient.ticket.findFirst({
     where:{
       id: id as string
     }
@@ -46,19 +46,23 @@ export async function PATCH(request: Request){
 
 
 export async function POST(request: Request){
-  const newTicket: Ticket = await request.json();
+  const { customerId, name, description } = await request.json();
 
-  if(!newTicket.customerId || !newTicket.name || !newTicket.description){
+  if(!customerId || !name || !description){
     return NextResponse.json({ error: "Failed create new ticket"}, { status: 400 });
   }
 
   try{
-    newTicket.status = "ABERTO"
 
     await prismaClient.ticket.create({
-      data:newTicket,
-    })
-      
+      data:{
+        name: name,
+        description: description,
+        status: "ABERTO",
+        customerId: customerId,
+      }
+    })as any
+
     return NextResponse.json({ message: "Chamado registrado com sucesso!"})
 
   }catch(err){
