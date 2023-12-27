@@ -56,7 +56,7 @@ export async function POST(request: Request){
 
   const createdTicket =  await prismaClient.ticket.create({
       data:newTicket,
-    });
+    })
 
     return NextResponse.json({ message: "Chamado registrado com sucesso!"})
 
