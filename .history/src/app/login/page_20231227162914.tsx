@@ -1,0 +1,26 @@
+"use client"
+import Container from "../../components/container/page"
+export default function Login(){
+    return(
+
+        // async function handleSubmit() {
+       
+        // }
+
+        <Container>
+            <div className="flex items-center" >
+                <div className="">
+                    <form >
+                        <h1 className="">Login</h1>
+                        <input type="email" placeholder="Email"/>
+                        <input type="password" placeholder="Password"/>
+                        <button on>Login</button>
+                    </form>
+
+                </div>
+            </div>
+            
+        </Container>
+        
+    )
+}

@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model usuario {
+  id_usuario                                                      String              @id(map: "pk_usuario") @default(dbgenerated("nextval('seq_id_usuario'::regclass)")) @db.VarChar(5)
+  nome_usuario                                                    String              @db.VarChar(80)
+  cpf                                                             String              @db.VarChar(11)
+  telefone                                                        Decimal?            @db.Decimal(15, 0)
+  email                                                           String              @db.VarChar(35)
+  senha                                                           String              @db.VarChar(70)
+  bloqueado                                                       Boolean             @default(false)
+  observacao                                                      String?             @db.VarChar(300)
+  ativo                                                           Boolean             @default(true)
+ o")
+}
