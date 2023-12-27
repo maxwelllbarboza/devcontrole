@@ -59,9 +59,9 @@ export async function POST(request: Request){
         name: newTicket.name,
         description: newTicket.description,
         status: "ABERTO",
-        customerId: newTicket.customerId,
-      } as Ticket
-    })
+        customerId: newTicketcustomerId,
+      }
+    })as any
 
     return NextResponse.json({ message: "Chamado registrado com sucesso!"})
 
