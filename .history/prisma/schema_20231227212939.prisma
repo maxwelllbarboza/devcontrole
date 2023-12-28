@@ -21,7 +21,7 @@ model Customer {
   updated_at DateTime? @default(now())
 
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  User   User   @relation(fields: [userId], references: [id])
 
   tickets Ticket[]
 }
@@ -34,7 +34,7 @@ model Ticket {
   created_at  DateTime? @default(now())
   updated_at  DateTime? @default(now())
 
-  customerId String  
+  customerId String?   
   customer   Customer @relation(fields: [customerId], references: [id])
 
   userId String
