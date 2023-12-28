@@ -36,8 +36,8 @@ export default async function NewTicket() {
         name: name as string,
         description: description as string,
         customerId: customerId as string,
-        status: "ABERTO" as string,
-        userId: session?.user.id as string
+        status: "ABERTO" as,
+        userId: session?.user.id
       }
     })
 
