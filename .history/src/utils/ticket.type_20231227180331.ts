@@ -7,5 +7,5 @@ export interface TicketProps{
   created_at: Date | null;
   updated_at: Date | null;
   customerId: string | null;
-  userId: string ;
+  userId: string | null;
 }
